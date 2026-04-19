@@ -8,9 +8,8 @@ arr = list(map(int, input("Enter number: ").split(",")))
 print(f"Before sorting: {arr}")
 bubble_sort(arr) #call function
 print(f"After sorting: {arr}")
-                
-                
-                
+
+
 # Quick Sorting
 def quick_sort(arr): 
     if len(arr) <= 1:      
@@ -21,7 +20,6 @@ def quick_sort(arr):
     return quick_sort(smaller) + [pivot] + quick_sort(bigger)
 arr = [5, 3, 8, 1, 9, 2]
 print(quick_sort(arr))  
-
 
 
 #palindrome
@@ -35,11 +33,9 @@ if palindrome(text):
     print(text,"is a palindrome")
 else:
     print(text,"is not a palindrome")
-        
-    
-    
-#factorial
 
+
+#factorial
 def factorial(n):
     if n < 0:
         print("negative number don't have factorial")
@@ -56,7 +52,6 @@ number = int(input("enter number(factorial): "))
 print(f"factorial is: {factorial(number)}")
 
 
-
 #sum of two numbers
 def two_sum(num, target):
     seen = {}
@@ -68,13 +63,29 @@ def two_sum(num, target):
             return seen[balance], i
 
         seen[num[i]] = i
+
     return "no pair found"
+
 
 num = list(map(int, input("Enter numbers: ").split()))
 target = int(input("Enter target: "))
 
-print(two_sum(num, target)) #calls function
+print(two_sum(num, target))
 
 
+#sum of three numbers 
+def threeSum(nums):
+    n = len(nums) #n var to store count
+    result = []
+    for i in range(n):
+        for j in range(i + 1, n):
+            for k in range(j + 1, n):
+                if nums[i] + nums[j] + nums[k] == 0:
+                    triplet = [nums[i], nums[j], nums[k]] #putting in list
+                    if triplet not in result:
+                        result.append(triplet)
+    return result
+nums = [-1, 0, 1, 2, -1, -4]
+       #[0, 1, 2, 3,  4,  5]
+print(threeSum(nums))
             
-
