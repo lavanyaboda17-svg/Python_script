@@ -132,3 +132,43 @@ target_1 = 12
 
 print("four_sum: ",fourSum(nums, target)) 
 print("four_sum: ",fourSum(num_1, target_1))
+ 
+#WATER EXAMPLE
+def maxArea(height):
+    if len((height) == 0 or (height) == 1 or h == 0 for h in height):
+        return 0
+    # if all(h == 0 for h in height):
+           # ALL zeros → TRUE  → return 0 , ANY  non-zero → FALSE → skip 
+    if len(height) == 2:
+        area = min(height[0], height[1]) * 1
+        print("Only 2 walls area is :",area)     #(maxArea([3, 7])) = 3
+        return area  
+
+    left, right = 0, len(height) - 1   # 9-1 = 8
+    max_water = 0 
+    while left < right:
+        # Calculate current area
+        width = right - left #left=1, right=8 → width = 8-1 = 7
+        current_area = min(height[left], height[right]) * width
+        max_water = max(max_water, current_area)
+
+        # Move the pointer with the shorter height
+        if height[left] < height[right]:
+            left += 1
+        else:
+            right -= 1
+    return max_water
+ 
+# Test
+height = [1, 8, 6, 2, 5, 4, 8, 3, 7]
+print(maxArea(height))  
+height_1 = [1, 2, -3, 4]
+print(maxArea(height_1))
+height_2 = [0,0,0,0]
+print(maxArea(height_2))
+height_3 = [-5,-3,-6,-2]
+print(maxArea(height_3))
+height_4 = [3,7]
+print(maxArea(height_4))
+height_5 = [3,7]
+print(maxArea(height_5))
