@@ -1,17 +1,16 @@
-# Bubble sorting
+#BUBBLE SORTING
 def bubble_sort(arr):
     for i in range(len(arr)): #3
         for j in range(len(arr)-i-1):
             if arr[j] > arr[j+1]:
                 arr[j] , arr[j+1] = arr[j+1] , arr[j] #swap
-arr = list(map(int, input("Enter number: ").split(",")))
+arr = list(map(int, input("Enter number(bubble_sort): ").split(",")))
 print(f"Before sorting: {arr}")
 bubble_sort(arr) #call function
 print(f"After sorting: {arr}")
-                
-                
-                
-# Quick Sorting
+
+
+#QUICK SORTING
 def quick_sort(arr): 
     if len(arr) <= 1:      
         return arr
@@ -23,8 +22,7 @@ arr = [5, 3, 8, 1, 9, 2]
 print(quick_sort(arr))  
 
 
-
-#palindrome
+#PALINDROME
 def palindrome(word):
     if word == word[::-1]:
         return True
@@ -35,11 +33,9 @@ if palindrome(text):
     print(text,"is a palindrome")
 else:
     print(text,"is not a palindrome")
-        
-    
-    
-#factorial
 
+
+#FACTORIAL
 def factorial(n):
     if n < 0:
         print("negative number don't have factorial")
@@ -56,25 +52,83 @@ number = int(input("enter number(factorial): "))
 print(f"factorial is: {factorial(number)}")
 
 
-
-#sum of two numbers
+#SUM OF TWO NUMBERS
 def two_sum(num, target):
     seen = {}
-
     for i in range(len(num)):
         balance = target - num[i]
-
         if balance in seen:
             return seen[balance], i
-
         seen[num[i]] = i
-    return "no pair found"
-
-num = list(map(int, input("Enter numbers: ").split()))
+        return "no pair found"
+    
+num = list(map(int, input("Enter numbers(sum of two num): ").split()))
 target = int(input("Enter target: "))
+print(two_sum(num, target))
 
-print(two_sum(num, target)) #calls function
+
+#SUM OF THREE NUMBERS
+def threeSum(nums):
+    nums.sort()        # arrange from small to big
+    n = len(nums)
+    result = []
+
+    for i in range(n - 2):                          # stop 2 before end
+        if i > 0 and nums[i] == nums[i - 1]:        # skip duplicate i
+            continue
+
+        left  = i + 1                               # move left
+        right = n - 1
+
+        while left < right:        #keep gooing until pointers meet
+            total = nums[i] + nums[left] + nums[right]  # add all 3 numbers
+            if total == 0:
+                result.append([nums[i], nums[left], nums[right]])
+                left  += 1
+                right -= 1
+            elif total < 0:
+                left  += 1                          # need larger number
+            else:
+                right -= 1                          # need smaller number
+
+    return result
+
+nums = [-1, 0, 1, 2, -1, -4]
+num_1 = [-1.5, 0.5, 1.0, 2.0, -1.0, -0.5]
+print("three_sum: ", threeSum(nums))
+print("three_sum: ", threeSum(num_1))
 
 
-            
+#SUM OF FOUR NUMBERS
+def fourSum(nums, target):
+    nums.sort() #arrange from small to big
+    n = len(nums)
+    result = [] 
+    for i in range(n - 3): #stop 3 before end 
+        if i > 0 and nums[i] == nums[i-1]: #0,0 skip one zero 
+            continue 
+        for j in range(i + 1, n - 2): # n-2 because we need space for left, right
+            if j > i + 1 and nums[j] == nums[j-1]: #avoid duplicate 
+                continue
+            left  = j + 1  #move left
+            right = n - 1
+            while left < right:
+                total = nums[i] + nums[j] + nums[left] + nums[right] #add all 4 numbers
+                if total == target:
+                    result.append([nums[i], nums[j], nums[left], nums[right]])
+                    left  += 1
+                    right -= 1
+                elif total < target:
+                    left += 1
+                else:
+                    right -= 1
 
+    return result
+
+nums     = [1, 0, -1, 0, -2, 2]
+num_1    = [2, 4, 5, 8, 2, 4]
+target   = 0
+target_1 = 12
+
+print("four_sum: ",fourSum(nums, target)) 
+print("four_sum: ",fourSum(num_1, target_1))
