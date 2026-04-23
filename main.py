@@ -135,7 +135,7 @@ print("four_sum: ",fourSum(num_1, target_1))
  
 #WATER EXAMPLE
 def maxArea(height):
-    if len((height) == 0 or (height) == 1 or h == 0 for h in height):
+    if len(height) == 0 or len(height) == 1 or all(h <= 0 for h in height):
         return 0
     # if all(h == 0 for h in height):
            # ALL zeros → TRUE  → return 0 , ANY  non-zero → FALSE → skip 
