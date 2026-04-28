@@ -135,30 +135,27 @@ print("four_sum: ",fourSum(num_1, target_1))
  
 #WATER EXAMPLE
 def maxArea(height):
-    if len(height) == 0 or len(height) == 1 or all(h <= 0 for h in height):
+    length_of_height= len(height)
+    if length_of_height == [1,0] or all(h <= 0 for h in height):
         return 0
-    # if all(h == 0 for h in height):
-           # ALL zeros → TRUE  → return 0 , ANY  non-zero → FALSE → skip 
-    if len(height) == 2:
+    if length_of_height == 2:
         area = min(height[0], height[1]) * 1
         print("Only 2 walls area is :",area)     #(maxArea([3, 7])) = 3
         return area  
-
-    left, right = 0, len(height) - 1   # 9-1 = 8
+    left, right = 0,length_of_height - 1   # 9-1 = 8
     max_water = 0 
     while left < right:
         # Calculate current area
         width = right - left #left=1, right=8 → width = 8-1 = 7
         current_area = min(height[left], height[right]) * width
         max_water = max(max_water, current_area)
-
-        # Move the pointer with the shorter height
+         # Move the pointer with the shorter height
         if height[left] < height[right]:
             left += 1
         else:
             right -= 1
     return max_water
- 
+
 # Test
 height = [1, 8, 6, 2, 5, 4, 8, 3, 7]
 print(maxArea(height))  
@@ -172,3 +169,24 @@ height_4 = [3,7]
 print(maxArea(height_4))
 height_5 = [3,7]
 print(maxArea(height_5))
+
+#Combination Sum
+def combinationSum(candidates, target):
+    result = []
+    
+    def backtrack(start,current,remaining): #recursion 
+        if remaining == 0:
+            result.append(list(current))
+            return
+        if remaining < 0:
+            return
+        for i in range(start, len(candidates)):
+            current.append(candidates[i])
+            backtrack(i, current, remaining - candidates[i])
+            current.pop()
+    backtrack(0, [], target) 
+    return result       
+   
+candidates = [1,3,7,2,5]
+target = 5
+print(combinationSum(candidates,target))
