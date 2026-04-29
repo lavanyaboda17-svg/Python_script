@@ -158,17 +158,17 @@ def maxArea(height):
 
 # Test
 height = [1, 8, 6, 2, 5, 4, 8, 3, 7]
-print(maxArea(height))  
+print("Max Area: ",maxArea(height))  
 height_1 = [1, 2, -3, 4]
-print(maxArea(height_1))
+print("Max Area: ",maxArea(height_1))
 height_2 = [0,0,0,0]
-print(maxArea(height_2))
+print("Max Area: ",maxArea(height_2))
 height_3 = [-5,-3,-6,-2]
-print(maxArea(height_3))
+print("Max Area: ",maxArea(height_3))
 height_4 = [3,7]
-print(maxArea(height_4))
+print("Max Area: ",maxArea(height_4))
 height_5 = [3,7]
-print(maxArea(height_5))
+print("Max Area: ",maxArea(height_5))
 
 #Combination Sum
 def combinationSum(candidates, target):
@@ -189,4 +189,31 @@ def combinationSum(candidates, target):
    
 candidates = [1,3,7,2,5]
 target = 5
-print(combinationSum(candidates,target))
+print("Combination of Sum:",combinationSum(candidates,target))
+
+
+#median task
+def medianSortedArray(nums1, nums2):
+    i, j = 0, 0
+    total = len(nums1) + len(nums2)
+    mid = total // 2
+    prev, curr = 0, 0
+
+    for _ in range(mid + 1): #(1,2,3/ 0,1,2,3 index)
+        prev = curr
+        if i < len(nums1) and (j >= len(nums2) or nums1[i] <= nums2[j]):
+            curr = nums1[i]
+            i += 1
+        else:
+            curr = nums2[j]
+            j += 1
+
+    if total % 2 == 1:
+        return float(curr)
+    else:
+        return (prev + curr) / 2.0
+
+# Test
+nums1 = [1, 3, 5]
+nums2 = []
+print("Median:", medianSortedArray(nums1, nums2))  
