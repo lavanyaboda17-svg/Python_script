@@ -1,27 +1,33 @@
-#SUM OF THREE NUMBERS
-def threeSum(nums):
-    nums.sort()        # arrange from small to big
-    n = len(nums)
-    result = []
+class Sum_of_three:
+    def __init__(self, nums, target):
+        self.nums   = nums
+        self.target = target
 
-    for i in range(n - 2):                          # stop 2 before end
-        if i > 0 and nums[i] == nums[i - 1]:        # skip duplicate i
-            continue
+    def threeSum(self):
+        result = []
+        nums   = sorted(self.nums)     # sort a copy, don't modify original
+        n      = len(nums)
 
-        left  = i + 1                               # move left
-        right = n - 1
+        for i in range(n - 2):
+            if i > 0 and nums[i] == nums[i - 1]:   # skip duplicates
+                continue
+            left  = i + 1
+            right = n - 1
 
-        while left < right:        #keep gooing until pointers meet
-            total = nums[i] + nums[left] + nums[right]  # add all 3 numbers
-            if total == 0:
-                result.append([nums[i], nums[left], nums[right]])
-                left  += 1
-                right -= 1
-            elif total < 0:
-                left  += 1                          # need larger number
-            else:
-                right -= 1                          # need smaller number
+            while left < right:
+                total = nums[i] + nums[left] + nums[right]
+                if total == self.target:
+                    result.append([nums[i], nums[left], nums[right]])
+                    left  += 1
+                    right -= 1
+                elif total < self.target:
+                    left  += 1
+                else:
+                    right -= 1
 
-    return result
+        return result if result else "No triplet found"
 
-
+    def display(self):
+        print(f"Numbers : {self.nums}")
+        print(f"Target  : {self.target}")
+        print(f"Result  : {self.threeSum()}")

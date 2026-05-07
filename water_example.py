@@ -1,24 +1,35 @@
-#WATER EXAMPLE
-def maxArea(height):
-    length_of_height= len(height)
-    if length_of_height == [1,0] or all(h <= 0 for h in height):
-        return 0
-    if length_of_height == 2:
-        area = min(height[0], height[1]) * 1
-        print("Only 2 walls area is :",area)     #(maxArea([3, 7])) = 3
-        return area  
-    left, right = 0,length_of_height - 1   # 9-1 = 8
-    max_water = 0 
-    while left < right:
-        # Calculate current area
-        width = right - left #left=1, right=8 → width = 8-1 = 7
-        current_area = min(height[left], height[right]) * width
-        max_water = max(max_water, current_area)
-         # Move the pointer with the shorter height
-        if height[left] < height[right]:
-            left += 1
-        else:
-            right -= 1
-    return max_water
+class MaxWater:
+    def __init__(self, heights):
+        self.heights = heights   # list of height arrays to test
 
-# Test
+    def maxArea(self, height):
+        n = len(height)
+
+        if n <= 1:                        # need at least 2 walls
+            return 0
+        if all(h <= 0 for h in height):  # all negative or zero
+            return 0
+        if n == 2:                        # only 2 walls
+            return max(0, min(height[0], height[1]))
+
+        # ── Two Pointer ──────────────────────────
+        left      = 0
+        right     = n - 1
+        max_water = 0
+
+        while left < right:
+            width        = right - left
+            current_area = min(height[left], height[right]) * width
+            max_water    = max(max_water, current_area)
+
+            if height[left] < height[right]:
+                left  += 1    # move smaller wall inward
+            else:
+                right -= 1    # move smaller wall inward
+        return max_water
+
+    def display(self):
+        for i, h in enumerate(self.heights):
+            print(f"height_{i}  : {h}")
+            print(f"max area   : {self.maxArea(h)}")
+            print()
