@@ -1,14 +1,12 @@
+from display import display
+
 class Palindrome:
     def __init__(self, word):
-        self.word     = word
-     
+        self.word = word
 
+    @display("Palindrome Check",header="Palindrome")
     def palindrome(self):
-        return 
-    def display(self):
-        print("Word    :", self.word)
-      
-        if self.palindrome():
-            print(self.word, "→ IS a Palindrome")
+        if self.word == self.word[::-1]:
+            return f"{self.word} is a Palindrome"
         else:
-            print(self.word, "→ is NOT a Palindrome")
+            return f"{self.word} is NOT a Palindrome"
