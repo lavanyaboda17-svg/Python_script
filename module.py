@@ -8,6 +8,7 @@ from max_water import MaxWater
 from Combination_Sum import Combination_Sum
 from median_sorted import MedianSorted
 from stack import ValidParentheses
+from regex import Regex
 
 
 if __name__ == "__main__":
@@ -55,57 +56,29 @@ if __name__ == "__main__":
         MedianSorted(nums1, nums2).medianSortedArray()
 
     for s in [
-        # Basic Valid
-        "()",
-        "[]",
-        "{}",
-        "()[]{}",
-        "{[()]}",
-        "{[]}",
-
-        # Basic Invalid
-        "(]",
-        "([)]",
-        "(}",
-        "{)",
-
-        # Empty String
+        "()", "[]", "{}", "()[]{}","{[()]}", "{[]}",
+        "(]", "([)]", "(}", "{)",
         "",
-
-        # Only Opening Brackets
-        "(((",
-        "{{{",
-        "[[[",
-        "(([]",
-
-        # Only Closing Brackets
-        ")))",
-        "}}}",
-        "]]]",
-
-        # Single Characters
-        "(",
-        ")",
-        "{",
-        "}",
-        "[",
-        "]",
-
-        # Deeply Nested
-        "((((((()))))))",
-        "{[({[({[]})]})}",
-        "({[({[{}]})]})[]",
-
-        # Long Mixed Valid
+        "(((", "{{{", "[[[", "(([]",
+        ")))", "}}}", "]]]",
+        "(", ")", "{", "}", "[", "]",
+        "((((((()))))))", "{[({[({[]})]})}","({[({[{}]})]})[]",
         "(){}[](){}[](){}[]",
-
-        # Interleaved Invalid
-        "([)]",
-        "{[}]",
-        "[(])",
-
-        # Non-Bracket Characters
-        "(hello)",
-        "{ }",
+        "([)]", "{[}]", "[(])",
+        "(hello)", "{ }",
     ]:
         ValidParentheses(s).is_valid()
+
+    for text in [
+        "mithil@yahoo.com",
+        "mithil@gmail.com",
+        "mithil1992@yahoo.com",
+        "mithilyahoo.com",
+        "@yahoo.com",
+        "mithil@yahoo.",
+        "mithil@.com",
+        "mithil",
+        "",
+        "My email is mithil@yahoo.com",
+    ]:
+        Regex(text).match()
